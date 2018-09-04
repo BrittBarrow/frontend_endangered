@@ -5,17 +5,31 @@ class ForestCarousel extends React.Component {
     let { allForests, handleClick } = this.props;
 
     return (
-      <div className="row">
-        {allForests.map((forest, index) => {
-          return (
-            <div key={index} onClick={() => handleClick(forest)}>
-              <img src={forest.image} alt={forest.name} />
-              <div>
-                <h5>{forest.name}</h5>
+      <div
+        id="carouselExampleSlidesOnly"
+        className="carousel slide"
+        data-ride="carousel"
+      >
+        <div className="carousel-inner">
+          {allForests.map((forest, index) => {
+            return (
+              <div
+                className="carousel-item active"
+                key={index}
+                onClick={() => handleClick(forest)}
+              >
+                <img
+                  className="d-block w-100"
+                  src={forest.image}
+                  alt={forest.name}
+                />
+                <div>
+                  <h5>{forest.name}</h5>
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
     );
   }

@@ -3,14 +3,13 @@ import { Route } from "react-router-dom";
 import NavBar from "./components/navBar";
 import ForestCarousel from "./components/forestCarousel";
 import Display from "./components/display";
-// import './App.css';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       allForests: [],
-      selectedForest: [],
+      selectedForest: null,
       filter: ""
     };
   }
@@ -33,6 +32,7 @@ class App extends Component {
     let selectedForest = allForests.filter(forest => {
       return forest.name === obj.name;
     });
+    selectedForest = selectedForest[0];
     this.setState({ selectedForest });
   };
 
