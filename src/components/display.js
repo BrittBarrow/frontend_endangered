@@ -6,16 +6,43 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 class Display extends React.Component {
   state = {
     comment: "",
-    commentList: []
+    commentList: null
+  };
+
+  componentDidMount() {
+    this.getFetch();
+  }
+  // let commentList = data.filter(
+  //   data.endangered_habitat_id === forest.id
+  // );
+  // this.setState({ commentList: commentList });
+
+  // console.log(forest);
+  getFetch = () => {
+    let { forest } = this.props;
+    forest !== null
+      ? fetch(`http://localhost:3000/api/v1/comments`)
+          .then(resp => resp.json())
+          .then(data => {})
+      : null;
   };
 
   handleChange = e => {
     this.setState({ comment: e.target.value });
   };
 
-  handleClick = () => {
-    let commentList = [...this.state.commentList, this.state.comment];
-    this.setState({ commentList });
+  handleClick = forest => {
+    let url = `http://localhost:3000/api/v1/comments`;
+    let data = {
+      comment: { text: this.state.comment, endangered_habitat_id: forest.id }
+    };
+    fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    })
+      .then(resp => resp.json())
+      .then(data => console.log(data));
   };
 
   handleDonation = e => {
@@ -27,6 +54,7 @@ class Display extends React.Component {
     console.log("This forest needs to be added to users list:", forest);
   };
 
+  // let { commentList } = this.state;
   render() {
     let { forest } = this.props;
     let { commentList } = this.state;
@@ -45,12 +73,17 @@ class Display extends React.Component {
           <h4>{`Share your thoughts about ${forest.name} below:`}</h4>
           <input type="text" onChange={this.handleChange} />
           <button>
-            <FontAwesomeIcon icon="pencil-alt" onClick={this.handleClick} />
+            <FontAwesomeIcon
+              icon="pencil-alt"
+              onClick={() => this.handleClick(forest)}
+            />
           </button>
           <ul>
-            {commentList.map((comment, index) => {
-              return <li key={index}>{comment}</li>;
-            })}
+            {commentList !== null
+              ? commentList.map(comment => {
+                  return <li>{comment.text}</li>;
+                })
+              : null}
           </ul>
         </div>
         <div>
@@ -74,3 +107,10 @@ class Display extends React.Component {
 }
 
 export default Display;
+
+// let commentList = [...this.state.commentList, this.state.comment];
+// this.setState({ commentList });
+
+// {forest.comments.map((comment, index) => {
+//   return <li key={index}>{comment.text}</li>;
+//   })}
