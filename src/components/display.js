@@ -6,25 +6,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 class Display extends React.Component {
   state = {
     comment: "",
-    commentList: null
+    commentList: []
   };
-
+  //
+  // let { forest } = this.props;
+  // forest !== null ? this.getFetch() : null;
   componentDidMount() {
     this.getFetch();
   }
-  // let commentList = data.filter(
-  //   data.endangered_habitat_id === forest.id
-  // );
-  // this.setState({ commentList: commentList });
 
   // console.log(forest);
   getFetch = () => {
-    let { forest } = this.props;
-    forest !== null
-      ? fetch(`http://localhost:3000/api/v1/comments`)
-          .then(resp => resp.json())
-          .then(data => {})
-      : null;
+    fetch("http://localhost:3000/api/v1/comments")
+      .then(resp => resp.json())
+      .then(data => {
+        this.setState({ commentList: data });
+      });
   };
 
   handleChange = e => {
@@ -36,13 +33,17 @@ class Display extends React.Component {
     let data = {
       comment: { text: this.state.comment, endangered_habitat_id: forest.id }
     };
+
     fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)
     })
       .then(resp => resp.json())
-      .then(data => console.log(data));
+      .then(data => {
+        let commentList = [...this.state.commentList, data];
+        this.setState({ commentList, comment: "" });
+      });
   };
 
   handleDonation = e => {
@@ -71,7 +72,11 @@ class Display extends React.Component {
         />
         <div>
           <h4>{`Share your thoughts about ${forest.name} below:`}</h4>
-          <input type="text" onChange={this.handleChange} />
+          <input
+            type="text"
+            value={this.state.comment}
+            onChange={this.handleChange}
+          />
           <button>
             <FontAwesomeIcon
               icon="pencil-alt"
@@ -79,11 +84,11 @@ class Display extends React.Component {
             />
           </button>
           <ul>
-            {commentList !== null
-              ? commentList.map(comment => {
-                  return <li>{comment.text}</li>;
-                })
-              : null}
+            {commentList
+              .filter(comment => comment.endangered_habitat_id === forest.id)
+              .map((comment, index) => {
+                return <li key={index}>{comment.text}</li>;
+              })}
           </ul>
         </div>
         <div>
@@ -114,3 +119,19 @@ export default Display;
 // {forest.comments.map((comment, index) => {
 //   return <li key={index}>{comment.text}</li>;
 //   })}
+
+// data => {
+//   let commentList = data.filter(
+//     data.endangered_habitat_id === forest.id
+//   );
+//   this.setState({ commentList });
+
+// {commentList.map((comment, index) => {
+//   return <li key={index}>{comment.text}</li>;
+// })}
+
+// if (forest !== null) {
+//   let forestComments = commentList.filter(
+//     comment => comment.endangered_habitat_id === forest.id
+//   );
+// }
