@@ -18,6 +18,7 @@ import {
 
 //fas prefis is default
 library.add(faGift, faPencilAlt, faBookmark, faStar);
+
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 //BrowserRouter = everything wrapped in browser router has access to routes

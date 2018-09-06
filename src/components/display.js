@@ -1,6 +1,7 @@
 import React from "react";
 import Twitter from "./twitter";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Donation from "./donation";
 // import Modal from "react-awesome-modal";
 
 class Display extends React.Component {
@@ -15,7 +16,6 @@ class Display extends React.Component {
     this.getFetch();
   }
 
-  // console.log(forest);
   getFetch = () => {
     fetch("http://localhost:3000/api/v1/comments")
       .then(resp => resp.json())
@@ -46,10 +46,10 @@ class Display extends React.Component {
       });
   };
 
-  handleDonation = e => {
-    let donation = e.target.innerText;
-    console.log(donation);
-  };
+  // handleDonation = e => {
+  //   let donation = e.target.innerText;
+  //   console.log(donation);
+  // };
 
   handleBookmark = forest => {
     console.log("This forest needs to be added to users list:", forest);
@@ -57,9 +57,10 @@ class Display extends React.Component {
 
   // let { commentList } = this.state;
   render() {
-    let { forest } = this.props;
+    let { forest, donations, handleDonation } = this.props;
     let { commentList } = this.state;
 
+    console.log(donations);
     return forest !== null ? (
       <div>
         <h1>{forest.name}</h1>
@@ -92,19 +93,27 @@ class Display extends React.Component {
           </ul>
         </div>
         <div>
-          <h6>Make a contribution towards saving this forest.</h6>
-          <button onClick={this.handleDonation}>
-            {" "}
-            $1 <FontAwesomeIcon icon="gift" />
-          </button>
-          <button onClick={this.handleDonation}>
-            {" "}
-            $5 <FontAwesomeIcon icon="gift" />
-          </button>
-          <button onClick={this.handleDonation}>
-            {" "}
-            $10 <FontAwesomeIcon icon="gift" />
-          </button>
+          <div>
+            <h6>Make a contribution towards saving this forest.</h6>
+            <button onClick={e => handleDonation(e, forest)}>
+              {" "}
+              $1 <FontAwesomeIcon icon="gift" />
+            </button>
+            <button onClick={e => handleDonation(e, forest)}>
+              {" "}
+              $5 <FontAwesomeIcon icon="gift" />
+            </button>
+            <button onClick={e => handleDonation(e, forest)}>
+              {" "}
+              $10 <FontAwesomeIcon icon="gift" />
+            </button>
+          </div>
+          <div>
+            <Donation
+              donations={donations}
+              forestDonations={forest.donations}
+            />
+          </div>
         </div>
       </div>
     ) : null;
