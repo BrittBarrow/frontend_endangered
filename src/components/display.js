@@ -64,54 +64,62 @@ class Display extends React.Component {
 
     console.log(donations);
     return forest !== null ? (
-      <div class="container">
-        <div class="row">
-          <div class="col-8">
-            <img class="rounded picture" src={forest.image} alt={forest.name} />
-          </div>
-          <div class="col-4 description">
-            <h2>{forest.name}</h2>
-            <p>{forest.description}</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <Twitter hashtag={forest.name} />
-          </div>
-          <div class="col">
-            <h4>{`Share your thoughts about ${forest.name} below:`}</h4>
-            <p style={{ color: "red" }}>{this.state.error}</p>
-            <textarea
-              cols="92"
-              rows="15"
-              tabindex="101"
-              value={this.state.comment}
-              onChange={this.handleChange}
-            />
-            <button>
-              <FontAwesomeIcon
-                icon="pencil-alt"
-                onClick={() => this.handleClick(forest)}
+      <div id={forest.name}>
+        <div id="container">
+          <div class="row">
+            <div class="col-8">
+              <img
+                class="rounded picture"
+                src={forest.image}
+                alt={forest.name}
               />
-            </button>
+            </div>
+            <div class="col-4 description">
+              <h2>{forest.name}</h2>
+              <p>{forest.description}</p>
+            </div>
           </div>
-          <div class="col">
-            <p>What's Being Said &#8628;</p>
-            <ul>
-              {commentList
-                .filter(comment => comment.endangered_habitat_id === forest.id)
-                .map((comment, index) => {
-                  return (
-                    <li key={index} className="comment">
-                      {comment.text}
-                    </li>
-                  );
-                })}
-            </ul>
+          <div class="row">
+            <div class="col">
+              <Twitter hashtag={forest.name} />
+            </div>
+            <div class="col">
+              <h4>{`Share your thoughts about ${forest.name} below:`}</h4>
+              <p style={{ color: "red" }}>{this.state.error}</p>
+              <textarea
+                cols="92"
+                rows="15"
+                tabindex="101"
+                value={this.state.comment}
+                onChange={this.handleChange}
+              />
+              <button>
+                <FontAwesomeIcon
+                  icon="pencil-alt"
+                  onClick={() => this.handleClick(forest)}
+                />
+              </button>
+            </div>
+            <div class="col">
+              <p>What's Being Said &#8628;</p>
+              <ul>
+                {commentList
+                  .filter(
+                    comment => comment.endangered_habitat_id === forest.id
+                  )
+                  .map((comment, index) => {
+                    return (
+                      <li key={index} className="comment">
+                        {comment.text}
+                      </li>
+                    );
+                  })}
+              </ul>
+            </div>
           </div>
         </div>
         <div class="row">
-          <div class="col-12">
+          <div class="col-5">
             <div>
               <h6>Make a contribution towards saving this forest.</h6>
               <button onClick={e => handleDonation(e, forest)}>
@@ -128,7 +136,7 @@ class Display extends React.Component {
               </button>
             </div>
           </div>
-          <div div="col">
+          <div div="col-5">
             <Donation
               donations={donations}
               forestDonations={forest.donations}

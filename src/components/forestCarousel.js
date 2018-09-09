@@ -22,14 +22,16 @@ class ForestCarousel extends React.Component {
       <Slider {...settings}>
         {allForests.map((forest, index) => {
           return (
-            <div
-              key={index}
-              className="carousel"
-              onClick={() => handleClick(forest)}
-            >
-              <img src={forest.image} />
-              <p className="text">{forest.name}</p>
-            </div>
+            <a href={`#${forest.name}`}>
+              <div
+                key={index}
+                className="carousel"
+                onClick={() => handleClick(forest)}
+              >
+                <img src={forest.image} />
+                <p className="text">{forest.name}</p>
+              </div>
+            </a>
           );
         })}
       </Slider>

@@ -1,4 +1,5 @@
 import React from "react";
+import "../css/donations.css";
 import PiChart from "./pichart";
 
 class Donation extends React.Component {

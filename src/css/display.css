@@ -1,6 +1,11 @@
+#container {
+  margin-top: 5%;
+}
+
 .picture {
   width: 750px;
   height: 500px;
+  margin-left: 10%;
 }
 
 .description {
@@ -13,4 +18,5 @@ ul {
 
 .comment {
   border-bottom: 5px solid green;
+  margin-right: 5%;
 }
