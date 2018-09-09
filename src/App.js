@@ -97,7 +97,6 @@ class App extends Component {
           donations={this.state.donations}
           handleDonation={this.handleDonation}
         />
-        // <UserProfile />
       </React.Fragment>
     );
   }

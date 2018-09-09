@@ -1,0 +1,16 @@
+.picture {
+  width: 750px;
+  height: 500px;
+}
+
+.description {
+  padding: 200px 30px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.comment {
+  border-bottom: 5px solid green;
+}
