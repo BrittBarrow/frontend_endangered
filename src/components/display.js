@@ -66,30 +66,30 @@ class Display extends React.Component {
     return forest !== null ? (
       <div id={forest.name}>
         <div id="container">
-          <div class="row">
-            <div class="col-8">
+          <div className="row">
+            <div className="col-8">
               <img
-                class="rounded picture"
+                className="rounded picture"
                 src={forest.image}
                 alt={forest.name}
               />
             </div>
-            <div class="col-4 description">
+            <div className="col-4 description">
               <h2>{forest.name}</h2>
               <p>{forest.description}</p>
             </div>
           </div>
-          <div class="row">
-            <div class="col">
+          <div className="row separation">
+            <div className="col">
               <Twitter hashtag={forest.name} />
             </div>
-            <div class="col">
+            <div className="col">
               <h4>{`Share your thoughts about ${forest.name} below:`}</h4>
               <p style={{ color: "red" }}>{this.state.error}</p>
               <textarea
-                cols="92"
+                cols="80"
                 rows="15"
-                tabindex="101"
+                tabIndex="101"
                 value={this.state.comment}
                 onChange={this.handleChange}
               />
@@ -100,7 +100,7 @@ class Display extends React.Component {
                 />
               </button>
             </div>
-            <div class="col">
+            <div className="col">
               <p>What's Being Said &#8628;</p>
               <ul>
                 {commentList
@@ -118,9 +118,9 @@ class Display extends React.Component {
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-5">
-            <div>
+        <div className="row separation">
+          <div className="col">
+            <div className="center">
               <h6>Make a contribution towards saving this forest.</h6>
               <button onClick={e => handleDonation(e, forest)}>
                 {" "}
@@ -136,11 +136,8 @@ class Display extends React.Component {
               </button>
             </div>
           </div>
-          <div div="col-5">
-            <Donation
-              donations={donations}
-              forestDonations={forest.donations}
-            />
+          <div className="col center">
+            <Donation donations={donations} forest={forest} />
           </div>
         </div>
       </div>
@@ -150,6 +147,7 @@ class Display extends React.Component {
 
 export default Display;
 //
+// forestDonations={forest.donations}
 // <input
 //   type="text"
 //   value={this.state.comment}

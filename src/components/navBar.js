@@ -6,29 +6,29 @@ class NavBar extends React.Component {
     let { handleFilter } = this.props;
 
     return (
-      <ul class="nav nav-pills">
-        <li class="nav-item">
-          <a class="nav-link" onClick={handleFilter}>
+      <ul className="nav nav-pills">
+        <li className="nav-item">
+          <a className="nav-link" onClick={handleFilter}>
             Africa
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" onClick={handleFilter}>
+        <li className="nav-item">
+          <a className="nav-link" onClick={handleFilter}>
             Asia
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" onClick={handleFilter}>
+        <li className="nav-item">
+          <a className="nav-link" onClick={handleFilter}>
             Australia
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link " onClick={handleFilter}>
+        <li className="nav-item">
+          <a className="nav-link " onClick={handleFilter}>
             Central America
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link " onClick={handleFilter}>
+        <li className="nav-item">
+          <a className="nav-link " onClick={handleFilter}>
             South America
           </a>
         </li>

@@ -2,6 +2,11 @@
   margin-top: 5%;
 }
 
+.center {
+  align-content: center;
+  text-align: center;
+}
+
 .picture {
   width: 750px;
   height: 500px;
@@ -19,4 +24,10 @@ ul {
 .comment {
   border-bottom: 5px solid green;
   margin-right: 5%;
+}
+
+.separation {
+  margin-top: 5%;
+  padding-top: 20px;
+  border-top: 2px solid goldenrod;
 }

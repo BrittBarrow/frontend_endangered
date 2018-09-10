@@ -17,35 +17,54 @@ class Donation extends React.Component {
     return grandTotal;
   };
 
+  getForestDonations = () => {
+    let { donations, forest } = this.props;
+
+    return donations.filter(
+      donation => donation.endangered_habitat_id === forest.id
+    );
+  };
+
+  // let { forestDonations } = this.props;
   donations = () => {
-    let { forestDonations } = this.props;
+    let { donations, forest } = this.props;
+
+    let specificDonations = donations.filter(
+      donation => donation.endangered_habitat_id === forest.id
+    );
+
     let total = [];
     let result = [];
-    let grandTotal;
-    forestDonations.map(d => {
+    specificDonations.map(d => {
       return total.push(d.amount);
     });
     result = total.map(Number);
-    //total is an array of numbers
-
-    grandTotal = result.reduce((a, b) => a + b);
+    //result is now an array of numbers & not a string
+    console.log(result);
+    let grandTotal = result.reduce((a, b) => a + b);
     return grandTotal;
   };
 
-  // {`$${this.donations()} of $${this.totalDonations()}`}
   render() {
-    let { donations, forestDonations } = this.props;
-    donations = this.donations();
-    forestDonations = this.totalDonations();
+    let { donations, forest } = this.props;
+    let forestDonations = this.donations();
+    donations = this.totalDonations();
 
     // percentage of total donations for this forest
+    console.log("donation props", this.props);
+    console.log("forest", forestDonations);
+    console.log("total", donations);
     return (
       <div>
         <div>
-          <PiChart allDonations={donations} forestDonations={forestDonations} />
+          <PiChart
+            allDonations={donations}
+            forestDonations={forestDonations}
+            forest={forest}
+          />
         </div>
 
-        {`$${donations} of $${forestDonations}`}
+        {`$${forestDonations} of $${donations}`}
       </div>
     );
   }
