@@ -69,7 +69,7 @@ class Display extends React.Component {
           <div className="row">
             <div className="col-8">
               <img
-                className="rounded picture"
+                className="rounded picture img-fluid"
                 src={forest.image}
                 alt={forest.name}
               />
