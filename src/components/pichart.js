@@ -1,5 +1,5 @@
 import React from "react";
-import { Doughnut, Pie } from "react-chartjs-2";
+import { Pie } from "react-chartjs-2";
 
 class PiChart extends React.Component {
   render() {
@@ -18,7 +18,8 @@ class PiChart extends React.Component {
       title: {
         display: true,
         text: `Donor Activity For The ${forest.name}`,
-        position: "top"
+        position: "top",
+        size: "18px"
       }
     };
     return (

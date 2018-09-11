@@ -3,7 +3,6 @@ import { Route } from "react-router-dom";
 import NavBar from "./components/navBar";
 import ForestCarousel from "./components/forestCarousel";
 import Display from "./components/display";
-import UserProfile from "./components/userProfile";
 
 class App extends Component {
   constructor() {

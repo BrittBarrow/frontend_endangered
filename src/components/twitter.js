@@ -1,5 +1,6 @@
 import React from "react";
 import { Timeline } from "react-twitter-widgets";
+import "../css/twitter.css";
 
 class Twitter extends React.Component {
   render() {
@@ -21,7 +22,7 @@ class Twitter extends React.Component {
     if (hashtag === "Sumatra") screenName = "WWFForestCarbon";
 
     return (
-      <div>
+      <div className="timeline">
         <Timeline
           dataSource={{
             sourceType: "profile",

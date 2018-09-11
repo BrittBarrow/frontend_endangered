@@ -64,7 +64,9 @@ class Donation extends React.Component {
           />
         </div>
 
-        {`$${forestDonations} of $${donations}`}
+        <p
+          style={{ fontSize: "16px" }}
+        >{`$${forestDonations} of $${donations}`}</p>
       </div>
     );
   }

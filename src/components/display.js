@@ -75,8 +75,10 @@ class Display extends React.Component {
               />
             </div>
             <div className="col-4 description">
-              <h2>{forest.name}</h2>
-              <p>{forest.description}</p>
+              <h2 style={{ fontSize: "20px", textAlign: "center" }}>
+                {forest.name}
+              </h2>
+              <p style={{ fontSize: "17px" }}>{forest.description}</p>
             </div>
           </div>
           <div className="row separation">
@@ -84,16 +86,21 @@ class Display extends React.Component {
               <Twitter hashtag={forest.name} />
             </div>
             <div className="col">
-              <h4>{`Share your thoughts about ${forest.name} below:`}</h4>
-              <p style={{ color: "red" }}>{this.state.error}</p>
+              <h4 style={{ fontSize: "18px" }}>{`Share your thoughts about ${
+                forest.name
+              } below:`}</h4>
+              <p style={{ color: "red", fontSize: "16px" }}>
+                {this.state.error}
+              </p>
               <textarea
-                cols="80"
+                cols="50"
                 rows="15"
+                style={{ fontSize: "16px" }}
                 tabIndex="101"
                 value={this.state.comment}
                 onChange={this.handleChange}
               />
-              <button>
+              <button className="pencil">
                 <FontAwesomeIcon
                   icon="pencil-alt"
                   onClick={() => this.handleClick(forest)}
@@ -101,7 +108,7 @@ class Display extends React.Component {
               </button>
             </div>
             <div className="col">
-              <p>What's Being Said &#8628;</p>
+              <p style={{ fontSize: "16px" }}>What's Being Said &#8628;</p>
               <ul>
                 {commentList
                   .filter(
@@ -109,7 +116,11 @@ class Display extends React.Component {
                   )
                   .map((comment, index) => {
                     return (
-                      <li key={index} className="comment">
+                      <li
+                        key={index}
+                        className="comment"
+                        style={{ fontSize: "16px" }}
+                      >
                         {comment.text}
                       </li>
                     );
@@ -120,17 +131,28 @@ class Display extends React.Component {
         </div>
         <div className="row separation">
           <div className="col">
-            <div className="center">
-              <h6>Make a contribution towards saving this forest.</h6>
-              <button onClick={e => handleDonation(e, forest)}>
+            <div className="money center" style={{ fontSize: "16px" }}>
+              <h6 style={{ fontSize: "16px" }}>
+                Make a contribution towards saving this forest.
+              </h6>
+              <button
+                className="btn btn-primary btn-lg m-2"
+                onClick={e => handleDonation(e, forest)}
+              >
                 {" "}
                 $1 <FontAwesomeIcon icon="gift" />
               </button>
-              <button onClick={e => handleDonation(e, forest)}>
+              <button
+                className="btn btn-primary btn-lg m-2 "
+                onClick={e => handleDonation(e, forest)}
+              >
                 {" "}
                 $5 <FontAwesomeIcon icon="gift" />
               </button>
-              <button onClick={e => handleDonation(e, forest)}>
+              <button
+                className="btn btn-primary btn-lg m-2"
+                onClick={e => handleDonation(e, forest)}
+              >
                 {" "}
                 $10 <FontAwesomeIcon icon="gift" />
               </button>
@@ -146,7 +168,9 @@ class Display extends React.Component {
 }
 
 export default Display;
+
 //
+
 // forestDonations={forest.donations}
 // <input
 //   type="text"
