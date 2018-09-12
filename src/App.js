@@ -68,13 +68,6 @@ class App extends Component {
       });
   };
 
-  // filterDonations = () => {
-  //   let donations = this.state.donations;
-  //   return donations.filter(
-  //     donations => donations.endangered_habitat_id.id === this.selectedForest.id
-  //   )
-  // };
-
   render() {
     return (
       <React.Fragment>
@@ -102,11 +95,3 @@ class App extends Component {
 }
 
 export default App;
-
-// <ForestCarousel
-//   allForests={this.state.allForests.filter(forest =>
-//     forest.region.includes(this.state.filter)
-//   )}
-//   handleClick={this.handleClick}
-// />
-//
